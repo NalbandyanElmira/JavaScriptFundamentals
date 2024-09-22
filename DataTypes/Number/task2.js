@@ -2,7 +2,7 @@ function readNumber() {
     let input;
     do {
         input = prompt('Input number', '');
-        if (input === 'CANCEL' || input === '') {
+        if (input === null || input === '') {
             return null;
         }
         input = +input;
