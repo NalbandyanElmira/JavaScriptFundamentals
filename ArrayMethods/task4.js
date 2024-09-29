@@ -8,3 +8,7 @@ function sortInDecreasingOrder(arr) {
     arr.sort(numericSort);
     arr.reverse();
 }
+
+function sortInDecreasingOrder2(arr) {
+    arr.sort((a,b) => b - a);
+}

@@ -8,3 +8,6 @@ function sortByAge(users) {
     users.sort(numericSort);
 }
 
+function sortByAge2(users) {
+    users.sort((a, b) => a.age - b.age);
+}
