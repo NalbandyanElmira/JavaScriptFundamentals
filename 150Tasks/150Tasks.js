@@ -63,6 +63,7 @@ function isSunday() {
     return years;
 }
 
+const { realpathSync } = require('fs');
 // 8. Write a JavaScript program where the program takes a random integer between 1 and 10, and the user is then prompted to input a guess number. The program displays a message "Good Work" if the input matches the guess number otherwise "Not matched".
 
 const readline = require('readline');
@@ -415,3 +416,96 @@ function checkThreeNumbers(num1, num2, num3) {
 
 // 42. Write a JavaScript program to check whether three given numbers are increasing in strict or in soft mode.  
 //Note: Strict mode -> 10, 15, 31 : Soft mode -> 24, 22, 31 or 22, 22, 31
+
+function strictOrSoft(num1, num2, num3) {
+    if (num2 > num1 && num3 > num2) {
+        return 'strict mode';
+    } else if ((num2 >= num1 && num3 >= num2) || (num2 <= num1 && num3 >= num2) || (num2 >= num1 && num3 >= num1)) {
+        return 'soft mode';
+    }
+    return 'neither';
+}
+
+// 43. Write a JavaScript program to check from three given numbers (non negative integers) that two or all of them have the same rightmost digit.  
+
+function haveSameRigthmostDigit(num1, num2, num3) {
+    const rightmost1 = num1 % 10;
+    const rightmost2 = num2 % 10;
+    const rightmost3 = num3 % 10;
+
+    if (rightmost1 === rightmost2 || rightmost1 === rightmost3 || rightmost2 === rightmost3) {
+        return true;
+    }
+    return false;
+}
+
+// 44. Write a JavaScript program that evaluates three given integers to determine if any one of them is greater than or equal to 20 and less than at least one of the other two.  
+
+function evaluate(num1, num2, num3) {
+    if ((num1 >= 20 && (num1 < num2 || num1 < num3)) ||
+        (num2 >= 20 && (num2 < num1 || num2 < num3)) ||
+        (num3 >= 20 && (num3 < num1 || num3 < num2))) {
+        return true;
+    }
+    return false;
+}
+
+// 45. Write a JavaScript program that checks two integer values and returns true if either one is 15 or if their sum or difference is 15.
+
+function check15(num1, num2) {
+    if (num1 === 15 || num2 === 15 || num1 + num2 === 15 || Math.abs(num1 - num2) === 15) {
+        return true;
+    }
+    return false;
+}
+
+// 46. Write a JavaScript program to check two given non-negative integers if one (not both) is a multiple of 7 or 11.  
+
+function checkMultiple(num1, num2) {
+    const isNum1Multiple = (num1 % 7 === 0 || num1 % 11 === 0);
+    const isNum2Multiple = (num2 % 7 === 0 || num2 % 11 === 0);
+
+    return (isNum1Multiple && !isNum2Multiple) || (!isNum1Multiple && isNum2Multiple);
+}
+
+// 47. Write a JavaScript program to check whether a given number exists in the range 40..10000.  For example 40 presents in 40 and 4000
+
+function isInRange(num) {
+    if (num >= 40 && num <= 10000) {
+        return true;
+    }
+    return false;
+}
+
+// 48. Write a JavaScript program to reverse a given string.  
+
+function reverseString(str) {
+    const reversedArray = [];
+    for (let i = str.length - 1; i >= 0; --i) {
+        reversedArray.push(str[i]);
+    }
+    return reversedArray.join('');
+}
+
+// 49. Write a JavaScript program to replace every character in a given string with the character following it in the alphabet.  
+
+function replaceChars(str) {
+    const replacedArray = [];
+    for (let char of str) {
+        const nextChar = String.fromCharCode(char.charCodeAt(0) + 1);
+        replacedArray.push(nextChar);
+    }
+    return replacedArray.join('');
+}
+
+// 50. Write a JavaScript program to capitalize the first letter of each word in a given string.  
+
+function capitalize(str) {
+    const words = str.split(' ');
+    const capitalized = [];
+    for (let i = 0; i < words.length; ++i) {
+        capitalized.push(words[i][0].toUpperCase() + words[i].slice(1));
+    }
+    return capitalized.join(' ');
+}
+
