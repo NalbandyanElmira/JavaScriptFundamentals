@@ -3,13 +3,12 @@ function at(arr, index) {
     return arr[index];
 }
 
-function concat(arr1, arr2) {
+function concat(...arrays) {
     const newArr = [];
-    for (let item of arr1) {
-        newArr.push(item);
-    }
-    for (let item of arr2) {
-        newArr.push(item);
+    for (let arr of arrays) {
+        for (let item of arr) {
+            newArr.push(item);
+        }
     }
     return newArr;
 }
@@ -124,10 +123,10 @@ function slice(array, start = 0,  end = array.length) {
     return newArray;
 }
 
-function sort(array) {
+function sort(array, comparator = (a, b) => a - b) {
     for (let i = 0; i < array.length; ++i) {
         for (let j = i + 1; j < array.length; ++j) {
-            if (array[i] > array[j]) {
+            if (comparator(array[i], array[j]) > 0) {
                 let temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
@@ -137,31 +136,42 @@ function sort(array) {
     return array;
 }
 
-function splice(array, start, deleteCount, ...newValues) {
-    const removedElements = [];
-    const newArray = [];
-
-    for (let i = 0; i < start; ++i) {
-        newArray.push(array[i]);
+function splice(array, start = 0, deleteCount = 0, ...newValues) {
+    if (start < -array.length) {
+        start = 0;
+    } else if (start < 0) {
+        start = array.length + start;
+    } else if (start > array.length) {
+        start = array.length;
     }
+
+    deleteCount = deleteCount === undefined ? array.length - start : Math.min(deleteCount, array.length - start);
+
+    const removedElements = [];
 
     for (let i = start; i < start + deleteCount; ++i) {
         removedElements.push(array[i]);
     }
 
-    for (let i = 0; i < newValues.length; i++) {
-        newArray.push(newValues[i]);
+    const itemsAfterDeletion = array.length - (start + deleteCount);
+    for (let i = 0; i < itemsAfterDeletion; ++i) {
+        array[start + i] = array[start + deleteCount + i];
     }
 
-    for (let i = start + deleteCount; i < array.length; ++i) {
-        newArray.push(array[i]);
-    }
+    array.length -= deleteCount;
 
-    for (let i = 0; i < newArray.length; i++) {
-        array[i] = newArray[i];
-    }
+    if (newValues.length > 0) {
+        const itemsToShift = array.length - start;
+        array.length += newValues.length;
 
-    array.length = newArray.length;
+        for (let i = itemsToShift - 1; i >= 0; --i) {
+            array[start + newValues.length + i] = array[start + i];
+        }
+
+        for (let i = 0; i < newValues.length; ++i) {
+            array[start + i] = newValues[i];
+        }
+    }
 
     return removedElements;
 }
@@ -219,8 +229,9 @@ function map(array, func) {
 }
 
 function reduce(array, func, initialValue) {
-    let accumulator = initialValue;
-    for (let i = 0; i < array.length; ++i) {
+    let accumulator = initialValue !== undefined ? initialValue : array[0];
+    let startIndex = initialValue !== undefined ? 0 : 1;
+    for (let i = startIndex; i < array.length; ++i) {
         accumulator = func(accumulator, array[i], i, array);
     }
     return accumulator;

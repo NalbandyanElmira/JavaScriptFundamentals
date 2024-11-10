@@ -1,5 +1,6 @@
 function groupById(arr) {
-    return arr.map(item => ({
-        [item.id]: item,
-    }));
+    return arr.reduce((acc, item) => {
+        acc[item.id] = item;
+        return acc;
+    }, {});
 }

@@ -7,3 +7,8 @@ function unique(arr) {
     }
     return newArr;
 }
+
+function uniqueSet(arr) {
+    const uniqueArr = new Set(arr);
+    return uniqueArr;
+}
