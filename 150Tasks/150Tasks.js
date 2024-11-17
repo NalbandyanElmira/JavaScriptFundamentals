@@ -1060,7 +1060,7 @@ function sumOfDifferences(arr) {
     return sumOfDiffs;
 }
 
-// 97. Write a JavaScript program to find the shortest possible string. This can be converted into a string and converted into a palindrome by adding characters to the end of it. 
+// 97. Write a JavaScript program to find the shortest possible string. This can be converted into a string and converted into a palindrome by adding characters to the end of it.
 
 // 98.  Write a JavaScript program to change the case of the minimum number of letters to make a given string  written in upper case or lower case. Fox example "Write" will be write and "PHp" will be "PHP"
 
@@ -1479,6 +1479,22 @@ function isStrictlyIncreasingOrDecreasing(arr) {
 
 // 123. Write a JavaScript program to find out if the members of a given array of integers are a permutation of numbers from 1 to a given integer.
 
+function isPermutation(arr, n) {
+    if (arr.length !== n) {
+        return false;
+    }
+    const set = new Set();
+
+    for (const num of arr) {
+        if (num < 1 || num > n || set.has(num)) {
+            return false;
+        }
+        set.add(num);
+    }
+
+    return true;
+}
+
 // 124. Write a JavaScript program to create the NOR value of two given booleans. 
 
 function logical_Nor(x, y) {
@@ -1585,7 +1601,30 @@ function prefixSums(arr) {
     return prefixArray;
 }
 
-// 132. Write a JavaScript program to find all distinct prime factors of a given integer. 
+// 132. Write a JavaScript program to find all distinct prime factors of a given integer.
+
+function findPrimeFactors(num) {
+    function isPrime(n) {
+        if (n <= 1) return false;
+        if (n === 2) return true;
+        if (n % 2 === 0) return false;
+        for (let i = 3; i <= Math.sqrt(n); ++i) {
+            if (n % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    const primes = [];
+
+    for (let i = 0; i <= num; ++i) {
+        if (num % i === 0 && isPrime(i)) {
+            primes.push(i);
+        }
+    }
+    return primes;
+}
 
 // 133. Write a JavaScript program to check whether a given fraction is proper or not. 
 
@@ -1650,7 +1689,13 @@ function checkIs15(num) {
     return num > 15 ? num : 15;
 }
 
-// 138. Write a JavaScript program to reverse the bits of a given 16-bit unsigned short integer. 
+// 138. Write a JavaScript program to reverse the bits of a given 16-bit unsigned short integer.
+
+function reverseBitsOfShort(num) {
+    const binary = num.toString(2).padStart(16, '0');
+    const reversedBinary = binary.split('').reverse().join('');
+    return parseInt(reversedBinary, 2);
+}
 
 // 139. Write a JavaScript program to find the position of the rightmost round number in an array of integers. If there are no round numbers, the function returns 0.  
 
@@ -1693,7 +1738,26 @@ function countCommonElements(arr1, arr2) {
     return count;
 }
 
-// 142. Write a JavaScript program to simplify a given absolute path for a file in Unix-style.  
+// 142. Write a JavaScript program to simplify a given absolute path for a file in Unix-style.
+
+function simplifyPath(path) {
+    const simplified = [];
+    const parts = path.split('/');
+
+    for (const part of parts) {
+        if (part === '' || part === '.') {
+            continue;
+        } else if (part === '..') {
+            if (simplified.length > 0) {
+                simplified.pop();
+            }
+        } else {
+            simplified.push(part);
+        }
+    }
+
+    return '/' + simplified.join('/');
+}
 
 // 143. Write a JavaScript program to sort the strings of a given array of strings in order of increasing length.  
 
@@ -1701,16 +1765,86 @@ function sortByLength(arr) {
     return arr.sort((a, b) => a.length - b.length);
 }
 
-// 144. Write a JavaScript program to break an URL address and put its parts into an array.  
+// 144. Write a JavaScript program to break an URL address and put its parts into an array.
 
-// 145.  Write a JavaScript program to find the maximum integer n such that 1 + 2 + ... + n <= a given integer.  
+function breakURL(str) {
+    return str.split('/');
+}
 
-// 146. Write a JavaScript program to compute the sum of cubes of all integers from 1 to a given integer.  
+// 145.  Write a JavaScript program to find the maximum integer n such that 1 + 2 + ... + n <= a given integer.
 
-// 147. Write a JavaScript program to compute the sum of all the digits that occur in a given string.  
+function findMaxN(num) {
+    let sum = 0;
+    let n = 0;
 
-// 148. Write a JavaScript program to swap two halves of a given array of integers of even length.  
+    for (let i = 1; sum + i <= num; ++i) {
+        sum += i;
+        n = i;
+    }
 
-// 149. Write a JavaScript program to change the capitalization of all letters in a given string.  
+    return n;
+}
+
+// 146. Write a JavaScript program to compute the sum of cubes of all integers from 1 to a given integer.
+
+function sumOfCubes(num) {
+    let sum = 0;
+    for (let i = 1; i <= num; ++i) {
+        sum += (i ** 3);
+    }
+    return sum;
+}
+
+// 147. Write a JavaScript program to compute the sum of all the digits that occur in a given string.
+
+function sumOfDigitsInString(str) {
+    let sum = 0;
+
+    for (let i = 0; i < str.length; ++i) {
+        if (str[i] >= '0' && str[i] <= '9') {
+            sum += parseInt(str[i]);
+        }
+    }
+    return sum;
+}
+
+// 148. Write a JavaScript program to swap two halves of a given array of integers of even length.
+
+function swapHalves(arr) {
+    if (arr.length % 2 !== 0) return;
+    const half = arr.length / 2;
+    const firstHalf = arr.slice(0, half);
+    const secondHalf = arr.slice(half);
+
+    return secondHalf.concat(firstHalf);
+}
+
+// 149. Write a JavaScript program to change the capitalization of all letters in a given string.
+
+function changeCapitalization(str) {
+    let res = '';
+    for (let char of str) {
+        if (char >= 'a' && char <= 'z') {
+            res += char.toUpperCase();
+        } else if (char >= 'A' && char <= 'Z') {
+            res += char.toLowerCase();
+        } else {
+            res += char;
+        }
+    }
+    return res;
+}
 
 // 150. Write a JavaScript program to swap pairs of adjacent digits of a given integer of even length.  
+
+function swapPairs(num) {
+    const str = num.toString();
+    if (str.length % 2 !== 0) {
+        return;
+    }
+    const arr = str.split('');
+    for (let i = 0; i < arr.length; i += 2) {
+        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+    }
+    return parseInt(arr.join(''));
+}
