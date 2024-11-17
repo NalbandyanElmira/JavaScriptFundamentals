@@ -1060,6 +1060,7 @@ function sumOfDifferences(arr) {
     return sumOfDiffs;
 }
 
+
 // 97. Write a JavaScript program to find the shortest possible string. This can be converted into a string and converted into a palindrome by adding characters to the end of it.
 
 // 98.  Write a JavaScript program to change the case of the minimum number of letters to make a given string  written in upper case or lower case. Fox example "Write" will be write and "PHp" will be "PHP"
