@@ -186,28 +186,19 @@ function difference19(num) {
 // 18. Write a JavaScript program to check a pair of numbers and return true if one of the numbers is 50 or if their sum is 50.  
 
 function checkPair(num1, num2) {
-    if (num1 === 50 || num2 === 50 || num1 + num2 === 50) {
-        return true;
-    }
-    return false;
+    return num1 === 50 || num2 === 50 || num1 + num2 === 50;
 }
 
 // 19. Write a JavaScript program to check whether a given integer is within 20 of 100 or 400.  
 
 function checkNumber(num) {
-    if ((num >= 80 && num <= 120) || (num >= 380 && num <= 420)) {
-        return true;
-    }
-    return false;
+    return (num >= 80 && num <= 120) || (num >= 380 && num <= 420);
 }
 
 // 20. Write a JavaScript program to check two given integers whether one is positive and another one is negative.  
 
 function checkPositiveAndNegative(num1, num2) {
-    if ((num1 > 0 && num2 < 0) || (num1 < 0 && num2 > 0)) {
-        return true;
-    }
-    return false;
+    return (num1 > 0 && num2 < 0) || (num1 < 0 && num2 > 0);
 }
 
 // 21. Write a JavaScript program to create another string by adding "Py" in front of a given string. If the given string begins with "Py" return the original string.  
@@ -231,8 +222,8 @@ function changePositions(str) {
     if (str.length < 2) {
         return str;
     }
-    const firstChar = str.at(0);
-    const lastChar = str.at(-1);
+    const firstChar = str[0];
+    const lastChar = str[-1];
     return lastChar + str.slice(1, -1) + firstChar;
 }
 
@@ -246,10 +237,7 @@ function getAnotherString(str) {
 // 25. Write a JavaScript program to check whether a given positive number is a multiple of 3 or 7.  
 
 function isMultiple(num) {
-    if (num % 3 === 0 || num % 7 === 0) {
-        return true;
-    }
-    return false;
+    return num % 3 === 0 || num % 7 === 0;
 }
 
 // 26. Write a JavaScript program to create a string from a given string. This is done by taking the last 3 characters and adding them at both the front and back. The string length must be 3 or more.  
@@ -265,28 +253,19 @@ function createString(str) {
 // 27. Write a JavaScript program to check whether a string starts with 'Java' if it does not otherwise.  
 
 function startsWithJava(str) {
-    if (str.startsWith('Java')) {
-        return true;
-    }
-    return false;
+    return str.startsWith('Java');
 }
 
 // 28. Write a JavaScript program to check whether two given integer values are in the range 50..99 (inclusive). Return true if either of them falls within the range.  
 
 function checkRange(num1, num2) {
-    if ((num1 >= 50 && num1 <= 99) || (num2 >= 50 && num2 <= 99)) {
-        return true;
-    }
-    return false;
+    return (num1 >= 50 && num1 <= 99) || (num2 >= 50 && num2 <= 99);
 }
 
 // 29. Write a JavaScript program to check whether three given integer values are in the range 50..99 (inclusive). Return true if one or more of them are in the specified range.
 
 function checkRanges(num1, num2, num3) {
-    if ((num1 >= 50 && num1 <= 99) || (num2 >= 50 && num2 <= 99) || (num3 >= 50 && num2 <= 99)) {
-        return true;
-    }
-    return false;
+    return (num1 >= 50 && num1 <= 99) || (num2 >= 50 && num2 <= 99) || (num3 >= 50 && num2 <= 99);
 }
 
 // 30. Write a JavaScript program to check whether a string " Script" appears at the 5th (index 4) position in a given string. If "Script" appears in the string, return the string without "Script" otherwise return the original one.
@@ -302,14 +281,7 @@ function containScript(str) {
 // 31. Write a JavaScript program to find the largest of three given integers.  
 
 function largest(num1, num2, num3) {
-    let largest = num1;
-    if (num2 > largest) {
-        largest = num2;
-    }
-    if (num3 > largest) {
-        largest = num3;
-    }
-    return largest;
+    return Math.max(num1, num2, num3);
 }
 
 // 32. Write a JavaScript program to find the closest value to 100 from two numerical values.  
@@ -324,10 +296,7 @@ function closest100(num1, num2) {
 // 33. Write a JavaScript program to check whether two numbers are in the range 40..60 or 70..100 inclusive.  
 
 function checkRangeTwoNumbers(num1, num2) {
-    if (((num1 >= 40 && num1 <= 60) || (num1 >= 70 && num1 <= 100)) && ((num2 >= 40 && num2 <= 60) || (num2 >= 70 && num2 <= 100))) {
-        return true;
-    }
-    return false;
+    return ((num1 >= 40 && num1 <= 60) || (num1 >= 70 && num1 <= 100)) && ((num2 >= 40 && num2 <= 60) || (num2 >= 70 && num2 <= 100));
 }
 
 // 34. Write a JavaScript program to find the largest number from the two given positive integers. The two numbers are in the range 40..60 inclusive.  
@@ -351,10 +320,7 @@ function sameLastDigit(num1, num2, num3) {
     const a = num1 % 10;
     const b = num2 % 10;
     const c = num3 % 10;
-    if (a === b && a === c) {
-        return true;
-    }
-    return false;
+    return a === b && a === c;
 }
 
 // 37. Write a JavaScript program to produce a new string that has the first 3 characters in lower case from a given string. If the string length is less than 3 convert all the characters to upper case.
@@ -387,7 +353,7 @@ function isGrade(totalMarks, isExam) {
 // 39.  Write a JavaScript program to compute the sum of the two given integers. If the sum is in the range 50..80 return 65 otherwise return 80.  
 
 function sumOfTwoIntegers(num1, num2) {
-    let sum = num1 + num2;
+    const sum = num1 + num2;
     if (sum >= 50 && sum <= 80) {
         return 65;
     }
@@ -397,10 +363,7 @@ function sumOfTwoIntegers(num1, num2) {
 // 40. Write a JavaScript program to check from two given integers whether one of them is 8 or their sum or difference is 8.  
 
 function isEight(num1, num2) {
-    if (num1 === 8 || num2 === 8 || num1 + num2 === 8 || num1 - num2 === 8) {
-        return true;
-    }
-    return false;
+    return num1 === 8 || num2 === 8 || num1 + num2 === 8 || num1 - num2 === 8;
 }
 
 // 41. Write a JavaScript program to check a set of three numbers; if the three numbers are the same return 30; otherwise return 20; and if two numbers are the same return 40.  
@@ -433,30 +396,21 @@ function haveSameRigthmostDigit(num1, num2, num3) {
     const rightmost2 = num2 % 10;
     const rightmost3 = num3 % 10;
 
-    if (rightmost1 === rightmost2 || rightmost1 === rightmost3 || rightmost2 === rightmost3) {
-        return true;
-    }
-    return false;
+    return rightmost1 === rightmost2 || rightmost1 === rightmost3 || rightmost2 === rightmost3;
 }
 
 // 44. Write a JavaScript program that evaluates three given integers to determine if any one of them is greater than or equal to 20 and less than at least one of the other two.  
 
 function evaluate(num1, num2, num3) {
-    if ((num1 >= 20 && (num1 < num2 || num1 < num3)) ||
+    return (num1 >= 20 && (num1 < num2 || num1 < num3)) ||
         (num2 >= 20 && (num2 < num1 || num2 < num3)) ||
-        (num3 >= 20 && (num3 < num1 || num3 < num2))) {
-        return true;
-    }
-    return false;
+        (num3 >= 20 && (num3 < num1 || num3 < num2));
 }
 
 // 45. Write a JavaScript program that checks two integer values and returns true if either one is 15 or if their sum or difference is 15.
 
 function check15(num1, num2) {
-    if (num1 === 15 || num2 === 15 || num1 + num2 === 15 || Math.abs(num1 - num2) === 15) {
-        return true;
-    }
-    return false;
+    return num1 === 15 || num2 === 15 || num1 + num2 === 15 || Math.abs(num1 - num2) === 15;
 }
 
 // 46. Write a JavaScript program to check two given non-negative integers if one (not both) is a multiple of 7 or 11.  
@@ -471,10 +425,7 @@ function checkMultiple(num1, num2) {
 // 47. Write a JavaScript program to check whether a given number exists in the range 40..10000.  For example 40 presents in 40 and 4000
 
 function isInRange(num) {
-    if (num >= 40 && num <= 10000) {
-        return true;
-    }
-    return false;
+    return num >= 40 && num <= 10000;
 }
 
 // 48. Write a JavaScript program to reverse a given string.  
@@ -564,10 +515,7 @@ function checkEqualPAndT(str) {
             countOfT++;
         }
     }
-    if (countOfP === countOfT) {
-        return true;
-    }
-    return false;
+    return countOfP === countOfT;
 }
 
 // 56. Write a JavaScript program to divide two positive numbers and return the result as string with properly formatted commas.  
@@ -954,10 +902,7 @@ function isSimilarIntegers(num1, num2, divisor) {
 // 89. Write a JavaScript program to check whether it is possible to replace $ in a given expression x $ y = z with one of the four signs +, -, * or / to obtain a correct expression.  For example x = 10, y = 30 and z = 300, we can replace $ with a multiple operator (*) to obtain x * y = z
 
 function isPossible(x, y, z) {
-    if (x + y === z || x - y === z || x * y === z || x / y === z) {
-        return true;
-    }
-    return false;
+    return x + y === z || x - y === z || x * y === z || x / y === z;
 }
 
 // 90. Write a JavaScript program to find the kth greatest element in a given array of integers.  
@@ -1419,10 +1364,7 @@ function isIdentityMatrix(matrix) {
 // 118. Write a JavaScript program to check whether a given number is in a given range. 
 
 function checkInRange(num, start, end) {
-    if (num >= start && num <= end) {
-        return true;
-    }
-    return false;
+    return num >= start && num <= end;
 }
 
 // 119. Write a JavaScript program to check if a given integer has an increasing digit sequence. 
